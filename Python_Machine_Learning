@@ -84,3 +84,24 @@ plt.ylabel('Heart Rate (BPM)', fontsize=18)
 
 
 plt.show()
+
+
+
+
+
+
+
+import pandas as pd
+
+
+heart_data2 = pd.read_csv(r"C:\Users\kisab\Downloads\arrhythmia.data",header=None,usecols=[0,14],names=["age","heart_rate"])
+heart_data2["heart_rate"]=heart_data2["heart_rate"].str.replace("?","0")
+heart_data2["heart_rate"]=heart_data2["heart_rate"].astype(int)
+heart_data2=heart_data2.sort_values(by=["age","heart_rate"])
+heart_data2["age"]=heart_data2['age'].astype(int)
+heart_data2["heart_rate"]=heart_data2['heart_rate'].astype(int)
+
+from sklearn. cluster import KMeans
+kmeans = KMeans()
+kmeans.fit(heart_data2)
+kmeans.inertia_
