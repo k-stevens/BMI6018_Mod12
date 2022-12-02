@@ -91,6 +91,10 @@ plt.show()
 
 
 
+
+
+
+
 import pandas as pd
 
 
@@ -101,7 +105,65 @@ heart_data2=heart_data2.sort_values(by=["age","heart_rate"])
 heart_data2["age"]=heart_data2['age'].astype(int)
 heart_data2["heart_rate"]=heart_data2['heart_rate'].astype(int)
 
+heart= pd.DataFrame(heart_data2, columns=['age', 'heart_rate'])  
+kmeans = KMeans(n_clusters=4).fit(heart)
+#print(kmeans.labels_)
+heart_data2['Labels'] = kmeans.labels_
+# centroids = kmeans.cluster_centers_
+print(heart_data2)
+
+mask0=heart_data2.Labels == 0
+heart_cluster0=heart_data2[mask0]
+
+mask1=heart_data2.Labels == 1
+heart_cluster1=heart_data2[mask1]
+
+mask2=heart_data2.Labels == 2
+heart_cluster2=heart_data2[mask2]
+
+mask3=heart_data2.Labels == 3
+heart_cluster3=heart_data2[mask3]
+
+
+
+
+# from sklearn. cluster import KMeans
+# kmeans = KMeans()
+# kmeans.fit(heart_data2)
+# kmeans.inertia_
+
 from sklearn. cluster import KMeans
 kmeans = KMeans()
-kmeans.fit(heart_data2)
+kmeans.fit(heart_cluster0)
 kmeans.inertia_
+SSE0=kmeans.inertia_
+print(SSE0) #Yellow
+
+
+
+from sklearn. cluster import KMeans
+kmeans = KMeans()
+kmeans.fit(heart_cluster1)
+SSE1=kmeans.inertia_
+print(SSE1) #Purple
+
+from sklearn. cluster import KMeans
+kmeans = KMeans()
+kmeans.fit(heart_cluster2)
+kmeans.inertia_
+SSE2=kmeans.inertia_
+print(SSE2) #Blue
+
+from sklearn. cluster import KMeans
+kmeans = KMeans()
+kmeans.fit(heart_cluster3)
+kmeans.inertia_
+SSE3=kmeans.inertia_
+print(SSE3) #Green
+
+
+
+#Label 3 is the green area
+#Label 2 is the blue area
+#Label 1 is the purple area
+#Label 0 is the yellow area
