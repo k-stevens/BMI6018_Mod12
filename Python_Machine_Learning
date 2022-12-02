@@ -1,0 +1,86 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline 
+from sklearn.cluster import KMeans
+from sklearn import datasets
+
+import warnings
+warnings.filterwarnings("ignore")
+heart_data2 = pd.read_csv(r"C:\Users\kisab\Downloads\arrhythmia.data",header=None,usecols=[0,14],names=["age","heart_rate"])
+heart_data2["heart_rate"]=heart_data2["heart_rate"].str.replace("?","0")
+heart_data2["heart_rate"]=heart_data2["heart_rate"].astype(int)
+heart_data2=heart_data2.sort_values(by=["age","heart_rate"])
+heart_data2["age"]=heart_data2['age'].astype(int)
+heart_data2["heart_rate"]=heart_data2['heart_rate'].astype(int)
+
+df=pd.DataFrame(heart_data2)
+# print(df.head())
+
+distortions = []
+K = range(1,10)
+for k in K:
+    kmeanModel = KMeans(n_clusters=k)
+    kmeanModel.fit(df)
+    distortions.append(kmeanModel.inertia_)
+    
+
+plt.figure(figsize=(16,8))
+plt.plot(K, distortions, 'bx-')
+plt.xlabel('K (The Optimal # of Clusters)')
+plt.ylabel('Distortion')
+plt.title('The Elbow Method Showing the Optimal # of Clusters')
+plt.show()
+
+
+
+
+
+
+
+
+
+
+import numpy as pd
+import pandas as pd
+import matplotlib.pyplot as plt
+import sklearn
+from sklearn.cluster import KMeans
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.preprocessing import scale
+import sklearn.metrics as sm
+from sklearn import datasets
+from sklearn.metrics import confusion_matrix,classification_report
+
+%matplotlib inline
+import warnings
+warnings.filterwarnings("ignore")
+
+heart_data2 = pd.read_csv(r"C:\Users\kisab\Downloads\arrhythmia.data",header=None,usecols=[0,14],names=["age","heart_rate"])
+heart_data2["heart_rate"]=heart_data2["heart_rate"].str.replace("?","0")
+heart_data2["heart_rate"]=heart_data2["heart_rate"].astype(int)
+heart_data2=heart_data2.sort_values(by=["age","heart_rate"])
+heart_data2["age"]=heart_data2['age'].astype(int)
+heart_data2["heart_rate"]=heart_data2['heart_rate'].astype(int)
+
+
+
+heart= pd.DataFrame(heart_data2, columns=['age', 'heart_rate'])  
+kmeans = KMeans(n_clusters=4).fit(heart)
+centroids = kmeans.cluster_centers_
+print(centroids)
+
+fig, ax = plt.subplots(figsize=(24, 12))
+
+plt.scatter(heart['age'], heart['heart_rate'], c= kmeans.labels_.astype(float), s=50, alpha=0.5)
+plt.scatter(centroids[:, 0], centroids[:, 1], c='red', s=50)
+
+
+
+plt.title("Analysis of Heart Rate based on Age", fontsize=18)
+  
+plt.xlabel('Age (in yrs)', fontsize=18)
+plt.ylabel('Heart Rate (BPM)', fontsize=18)
+
+
+plt.show()
