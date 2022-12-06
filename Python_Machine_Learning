@@ -24,9 +24,9 @@ from sklearn.cluster import KMeans
 from sklearn import datasets
 
 import warnings
-warnings.filterwarnings("ignore")
-heart_data2 = pd.read_csv(r"C:\Users\kisab\Downloads\arrhythmia.data",header=None,usecols=[0,14],names=["age","heart_rate"])
-heart_data2["heart_rate"]=heart_data2["heart_rate"].str.replace("?","0")
+warnings.filterwarnings("ignore") #There was a warning message that my code may not work in future versions of python, but it works now
+heart_data2 = pd.read_csv(r"C:\Users\kisab\Downloads\arrhythmia.data",header=None,usecols=[0,14],names=["age","heart_rate"]) #Select only columns I want
+heart_data2["heart_rate"]=heart_data2["heart_rate"].str.replace("?","0") #Change unknown data to 0
 heart_data2["heart_rate"]=heart_data2["heart_rate"].astype(int)
 heart_data2=heart_data2.sort_values(by=["age","heart_rate"])
 heart_data2["age"]=heart_data2['age'].astype(int)
@@ -59,8 +59,8 @@ plt.show()
 
 
 #Scatter plot and centroids
-#Using the elbow method, I found 4 clusters was ideal for the data. So I found the coordinates of all 4 centroids, graphed them, and also graphed the rest of the data
-#and color coded it depending on which cluster it was closest to.
+#Using the elbow method, I found 4 clusters was ideal for the data. So I found the coordinates of all 4 centroids, graphed them, and also graphed the 
+#rest of the data and color coded it depending on which cluster it was closest to.
 import numpy as pd
 import pandas as pd
 import matplotlib.pyplot as plt
