@@ -1,3 +1,21 @@
+#Kaitlyn Stevens
+#Using the arrhythmia data set and scikit learn package
+
+#Using one of the three datasets to demonstrate k-means clustering using the scikit learn package (50 points). 
+#Be sure to review the readings before you start on this assignment. Calculate the sum of least square error for each different values of 'k'. 
+#Using Matplotlib determine the optimal number of clusters (k) using the elbow method along with a brief explanation (50 points) . 
+#Finally plot the optimal clusters with their centroids along with a brief explanation (50 points). Comment your code as needed.
+
+
+
+#Elbow Method
+#When assessing a cluster, you want the points distance as close as possible to a cluster (called sum of squares), and clusters as far as possible.
+#In the elbow method, you graph the distance between points in a cluster against the number of clusters and you get a decreasing line plot that plateaus (looking like an elbow).
+#The 'elbow' is where the graph bends, or goes from decreasing to the consistent plateau. This is the greatest number of clusters and still the greatest distance apart.
+#Select the elbow as your 'k' or optimal number of clusters and input that as your k-value in the scatter plot you-re creating (with the same data used to find k).
+#In my example with my arrythmia data, the elbow method found 4 clusters to be ideal.
+
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -40,7 +58,9 @@ plt.show()
 
 
 
-
+#Scatter plot and centroids
+#Using the elbow method, I found 4 clusters was ideal for the data. So I found the coordinates of all 4 centroids, graphed them, and also graphed the rest of the data
+#and color coded it depending on which cluster it was closest to.
 import numpy as pd
 import pandas as pd
 import matplotlib.pyplot as plt
