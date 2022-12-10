@@ -60,7 +60,8 @@ plt.show()
 
 #Scatter plot and centroids
 #Using the elbow method, I found 4 clusters was ideal for the data. So I found the coordinates of all 4 centroids, graphed them, and also graphed the 
-#rest of the data and color coded it depending on which cluster it was closest to.
+#rest of the data and color coded it depending on which cluster it was closest to. The centroids were plotted in red, the clusters: yellow, purple, green, blue.
+
 import numpy as pd
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -113,7 +114,14 @@ plt.show()
 
 
 
-
+#After I found the centroids and clusters, I created a new table on my dataframe that was the 'cluster', which was 0-3. I then created 4 masks, 
+#showing only one of the clusters at the time. I then found the code to perform an SSE, and performed it with a mask to find the SSE of that cluster.
+#The SSE code is commented below before I used it for each cluster.
+#Originally, I plugged all of the data in and only got 1 SSE value, so I had to find a way to separate the data based on the clusters.
+#Label 3 is the green area
+#Label 2 is the blue area
+#Label 1 is the purple area
+#Label 0 is the yellow area
 
 import pandas as pd
 
@@ -180,10 +188,3 @@ kmeans.fit(heart_cluster3)
 kmeans.inertia_
 SSE3=kmeans.inertia_
 print(SSE3) #Green
-
-
-
-#Label 3 is the green area
-#Label 2 is the blue area
-#Label 1 is the purple area
-#Label 0 is the yellow area
