@@ -117,6 +117,8 @@ plt.show()
 #After I found the centroids and clusters, I created a new table on my dataframe that was the 'cluster', which was 0-3. I then created 4 masks, 
 #showing only one of the clusters at the time. I then found the code to perform an SSE, and performed it with a mask to find the SSE of that cluster.
 #The SSE code is commented below before I used it for each cluster.
+#The SSE is the sum of square errors, which is a regression analysis to show how well the data fits to the cluster. It shows the average square 
+#of the distance between the clusters.
 #Originally, I plugged all of the data in and only got 1 SSE value, so I had to find a way to separate the data based on the clusters.
 #Label 3 is the green area
 #Label 2 is the blue area
